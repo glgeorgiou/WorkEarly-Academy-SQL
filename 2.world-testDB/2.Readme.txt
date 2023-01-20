@@ -1,0 +1,2 @@
+Starting a new Database. Create a database named 'world-test' and follow the queries.
+First we create category table, then the other tables and insert data into them.

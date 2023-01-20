@@ -1,0 +1,3 @@
+Field,Type,Null,Key,Default,Extra
+CategoryID,int,NO,PRI,NULL,
+Categoryname,char(255),YES,,NULL,
