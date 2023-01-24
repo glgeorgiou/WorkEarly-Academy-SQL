@@ -1,0 +1,2 @@
+Update Country and Category Table.
+Select statement using limit keyword.
