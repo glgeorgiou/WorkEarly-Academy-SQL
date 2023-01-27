@@ -1,3 +1,4 @@
-The aim of '1' is to get practice with keys, primary and foreign.
+This folder is used once for testing purposes on how to criate foreign and primary keys.
+
 
 First you have to create a database named 'test'. Then proceed to the ralted files which beggins with '1.'. Each sets of SQL commands beggins with the comment sign '#'. So, execute each set separately.

@@ -11,4 +11,4 @@ SELECT * from Country LIMIT 5;
 SELECT * from Country LIMIT 5, 10;
 
 # Use of distinct keyword
-SELECT DISTINCT(COuntryName) from Country;
+SELECT DISTINCT(CountryName) from Country;

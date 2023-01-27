@@ -7,5 +7,8 @@ Install MySQL software from <a href="https://dev.mysql.com/downloads/file/?id=51
 </p>
 <h2>Usage</h2>
 <p>
-Each file will be the same name with different extension. For example test.sql will be the SQL statement, the text.csv the results of the related .sql file and a test.txt file for explanation purposes if needed.
+Each file will be the same name with different extension. For example test.sql will be the SQL statement, the text.html is the results of the related .sql file.
+</p>
+<p> 
+From the '2.world-testDB' folder and after the 'world_test' database is used.
 </p>
