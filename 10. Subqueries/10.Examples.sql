@@ -44,3 +44,10 @@ SELECT COUNT(*) as 'Count of events', YEAR(EventDate) as 'Year'
 FROM event
 GROUP BY YEAR(EventDate)
 ORDER BY YEAR(EventDate);
+
+
+# 7. Find all countries which have more than 6 events in World DB.
+SELECT Countryid, COUNT(EventID) AS 'Number of events'
+FROM event
+GROUP BY Countryid
+HAVING COUNT(EventID) >6;
