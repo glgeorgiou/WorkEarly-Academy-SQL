@@ -8,6 +8,5 @@ BEGIN
 END //
 DELIMITER ;
 
-# Function call
-use sakila;
+USE sakila;
 CALL sp_GetMovies;
