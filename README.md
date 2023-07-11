@@ -27,11 +27,13 @@ In order to use it from the MySQL Workbench programme choose from the menu File 
 <p>It is required to have installed the MySQL software before to continue in next steps.</p>
 <h3>Steps</h3>
 <p> 
-<ol>
-	<li>Open MySQL Workbench on your personal device </li>
-	<li>Click on the + symbol which resides next to MySQL connections </li>
-	<li>Enter the following details: </li>
-
+	<ol>
+		<li>Open MySQL Workbench on your personal device </li>
+		<li>Click on the + symbol which resides next to MySQL connections </li>
+		<li>Enter the following details: </li>
+	</ol>
+</p>
+<p>
 	<ul>
 		<li>Connection Name =  enter any text you prefer </li>
 		<li>Username = workearly1 </li>
@@ -41,13 +43,13 @@ In order to use it from the MySQL Workbench programme choose from the menu File 
 		<li>Username = workearly1 </li>
 		<li>password = work123 </li>
 	</ul>
-
-	<li>Run the following queries </li>
-		<ol>
-			<li> USE world;</li>
-			<li> SELECT DISTINCT(EventName) FROM Event WHERE CountryID=7 AND CategoryID=9 </li>
-			<li> USE world; </li>
-			<li> SELECT COUNT(*) AS total_Countries,ContinentID FROM Country GROUP BY ContinentID;</li>
-		</ol>
-</ol>
+</p>
+<p>Run the following queries </p>
+<p>
+	<ol>
+		<li> USE world;</li>
+		<li> SELECT DISTINCT(EventName) FROM Event WHERE CountryID=7 AND CategoryID=9 </li>
+		<li> USE world; </li>
+		<li> SELECT COUNT(*) AS total_Countries,ContinentID FROM Country GROUP BY ContinentID;</li>
+	</ol>
 </p>
