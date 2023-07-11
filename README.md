@@ -26,6 +26,7 @@ In order to use it from the MySQL Workbench programme choose from the menu File 
 <h2>SQL Playground</h2>
 <p>It is required to have installed the MySQL software before to continue in next steps.</p>
 <h3>Steps</h3>
+<p> 
 <ol>
 	<li>Open MySQL Workbench on your personal device </li>
 	<li>Click on the + symbol which resides next to MySQL connections </li>
@@ -49,3 +50,4 @@ In order to use it from the MySQL Workbench programme choose from the menu File 
 			<li> SELECT COUNT(*) AS total_Countries,ContinentID FROM Country GROUP BY ContinentID;</li>
 		</ol>
 </ol>
+</p>
