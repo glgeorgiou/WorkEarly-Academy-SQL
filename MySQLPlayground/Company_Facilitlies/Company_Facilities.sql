@@ -29,11 +29,11 @@ SELECT * FROM facilities WHERE name LIKE '%Tennis%';
 SELECT name AS 'Cheap', monthlymaintenance as 'Expensive' FROM facilities WHERE monthlymaintenance > 100;
 # Right solution
 SELECT name, 
-CASE 
-	WHEN  (monthlymaintenance > 100)
-    THEN 'expensive'
-    ELSE 'cheap'
-END AS cost
+	CASE 
+		WHEN  (monthlymaintenance > 100)
+		THEN 'expensive'
+		ELSE 'cheap'
+	END AS cost
 FROM facilities;
 
 
@@ -65,3 +65,64 @@ SELECT recommendedby, count(*)
 FROM members 
 WHERE recommendedby IS NOT NULL
 GROUP BY recommendedby;
+
+
+# 9. Write a query that will print the total slots booked in the year of 2012 per facility per month.
+# My solution
+SELECT bks.slots, count(bks.slots) as 'Count slots', year(bks.starttime), month(bks.starttime)
+FROM facilities facs JOIN bookings bks on facs.facid = bks.facid 
+GROUP BY bks.slots, year(bks.starttime), month(bks.starttime);
+# Right solution
+SELECT facid, MONTH(starttime) AS Month, SUM(slots) AS 'Total Slots'
+FROM bookings
+WHERE starttime >= '2012-01-01'
+AND starttime < '2013-01-01'
+GROUP BY facid, Month;
+
+
+# 10. Write a query that will print the name and the total revenue of each facility. 
+# Take under consideration that each facility has a different price for members and guests.
+# My solution
+SELECT name, sum(membercost), sum(guestcost) FROM facilities GROUP BY name;
+# Right solution
+SELECT facs.name, SUM(slots *
+CASE
+	WHEN memid = 0
+    THEN facs.guestcost
+    ELSE facs.membercost
+END) AS revenue
+FROM bookings bks
+JOIN facilities facs
+ON bks.facid = facs.facid
+GROUP BY facs.name;
+
+
+# 11. Query a list of start times for bookings by members named 'Matthew'.
+# My solution
+SELECT count(bks.starttime), memb.firstname
+FROM bookings as bks JOIN members as memb ON bks.memid = memb.memid
+WHERE memb.firstname = 'Matthew' GROUP BY memb.firstname;
+# Right solution
+SELECT mems.memid, bks.starttime
+FROM bookings as bks JOIN members as mems ON bks.memid = mems.memid
+WHERE mems.firstname = 'Matthew';
+
+
+# 12. Write a query that will print the name and the revenue of facilities with total revenue < 1000.
+# My solution with errors
+SELECT name, COUNT(facid * CASE WHEN facid = 0 THEN guestcost ELSE membercost END) AS revenue
+FROM facilities WHERE revenue < 1000 GROUP BY name;
+# Right solution
+SELECT name, revenue FROM
+	(SELECT facs.name, sum(
+		CASE
+			WHEN memid = 0
+			THEN slots * facs.guestcost
+            ELSE slots * membercost
+		END) AS revenue
+	FROM bookings bks
+    JOIN facilities facs
+    ON bks.facid = facs.facid
+    GROUP BY facs.name)
+AS agg
+WHERE revenue < 1000;
