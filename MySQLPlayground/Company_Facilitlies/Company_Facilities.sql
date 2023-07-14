@@ -126,3 +126,50 @@ SELECT name, revenue FROM
     GROUP BY facs.name)
 AS agg
 WHERE revenue < 1000;
+
+
+# 13. Write a query that will print the facility (facid) with the highest number of booked slots.
+# my solution
+SELECT facid, max(slots) FROM bookings GROUP BY facid;
+# correct solution
+SELECT facid, SUM(slots) AS totalslots
+FROM bookings
+GROUP BY facid
+HAVING SUM(slots) = 
+	(SELECT MAX(sum2.totalslots)
+    FROM
+		(SELECT SUM(slots) AS totalslots
+        FROM bookings
+        GROUP BY facid
+        ) AS sum2
+	);
+    
+    
+# 14. Write a query that will print the firstname and surname of all the members who have remoccemded another member,
+# without duplicates
+# My solution
+SELECT DISTINCT firstname, surname, recommendedby FROM members;
+# Right solution
+SELECT DISTINCT recs.firstname as firstname, recs.surname as surname
+FROM members mems JOIN members recs
+ON recs.memid = mems.recommendedby
+ORDER BY surname, firstname;
+    
+    
+# 15. Using a recursive query print the memid, firstname, surname of the upward recommendation chain for any member.
+# Example of an upward recomendation chain is: Mary got recommended by George which got recommended by Anna etc.
+# Solutioon  with ERRORS
+#WITH RECURSIVE recommenders(recommender, member) AS (
+#	SELECT recommendedby, memid
+#    FROM members
+#    UNION ALL
+#    SELECT mems.recommendedby, recs.member
+#	 FROM recommenders recs
+#    INNER JOIN members mems
+#	ON mems.memid = recs.recommender);
+
+# SELECT recs.member recs.recommender, mems.firstname, mems.surname
+# FROM recommenders recs
+# INNER JOIN members mems
+# ON recs.recommenders = mems.memid
+# WHERE recs.member = 22 OR recs.member=12;    
