@@ -27,6 +27,3 @@ SELECT property_type, COUNT(*) AS 'No. Ads'
 FROM RentProperties
 GROUP BY property_type
 ORDER BY property_type;
-
-SELECT COUNT(*) FROM RentProperties
-WHERE property_type = 'PH';
