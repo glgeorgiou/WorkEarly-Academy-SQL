@@ -27,3 +27,17 @@ SELECT property_type, COUNT(*) AS 'No. Ads'
 FROM RentProperties
 GROUP BY property_type
 ORDER BY property_type;
+
+# 5. Which state has the maximum price
+SELECT state_name, price
+FROM RentProperties
+WHERE price = (
+	SELECT MAX(price)
+    FROM RentProperties);
+
+
+#  The maximum price, minimum price and the related ragion
+#SELECT state_name, MAX(price) AS 'Max Price', MIN(price) AS 'Minimum Price'
+#FROM RentProperties
+#GROUP BY state_name;
+
