@@ -32,12 +32,17 @@ ORDER BY property_type;
 SELECT state_name, price
 FROM RentProperties
 WHERE price = (
-	SELECT MAX(price)
+	SELECT MAX(CAST(price AS signed))
+    FROM RentProperties);
+    
+# 6. Which state has the minimum price
+SELECT DISTINCT state_name, price
+FROM RentProperties
+WHERE price = (
+	SELECT MIN(CAST(price AS signed))
     FROM RentProperties);
 
-
-#  The maximum price, minimum price and the related ragion
-#SELECT state_name, MAX(price) AS 'Max Price', MIN(price) AS 'Minimum Price'
-#FROM RentProperties
-#GROUP BY state_name;
-
+# 7. The maximum price, minimum price and the related ragion
+SELECT state_name, MAX(CAST(price AS signed)) AS 'Max Price', MIN(CAST(price AS signed)) AS 'Minimum Price'
+FROM RentProperties
+GROUP BY state_name;
